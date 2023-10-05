@@ -1,35 +1,72 @@
-<h1>Registro de alumnos</h1>
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
 
-  <div class="mb-3 row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-    <div class="col-sm-10">
+<div class="card m-auto text-center p-3 mt-5" style="width: 70%;">
+
+  <h1>Registro de alumnos</h1>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" >
   
-      <input 
-      formControlName="email" 
-      type="text" 
-       class="form-control" 
-       value="email@example.com"
-       [ngClass]="{'is-invalid':emailControIsInvalid }"
-       >
-       <div class="invalid-feedback">
-        <ng-container *ngIf="emailControl.errors?.['required']">
-          Este campo es requerido
-        </ng-container>
-        <ng-container *ngIf="emailControl.errors?.['email']">
-          Debe ingresar un email valido
-        </ng-container>
-       </div>
   
+    <div class="mb-3 row">
+      <label class="col-sm-2 col-form-label">Codigo</label>
+      <div class="col-sm-10">
+  
+        <input formControlName="codigo" type="text" class="form-control"
+          [ngClass]="{'is-invalid':codigoControIsInvalid }">
+        <div class="invalid-feedback">
+          <ng-container *ngIf="codigoControl.errors?.['required']">
+            Este campo es requerido
+          </ng-container>
+          <ng-container *ngIf="codigoControl.errors?.['codigoInvalido']">
+            El formato del codigo debe tener letras y numeros separados por guion: por ejemplo: A-01
+          </ng-container>
+        </div>
+  
+      </div>
     </div>
-  </div>
-  <div class="mb-3 row">
-    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-    <div class="col-sm-10">
   
-      <input  formControlName="password" type="password" class="form-control" id="inputPassword">
   
+    <div class="mb-3 row">
+      <label class="col-sm-2 col-form-label">Nombres y Apellidos</label>
+      <div class="col-sm-10">
+  
+        <input formControlName="nombreApellido" type="text" class="form-control"
+        [ngClass]="{'is-invalid':nombreApellidoControIsInvalid }">
+        <div class="invalid-feedback">
+          <ng-container *ngIf="nombreApellidoControl.errors?.['required']">
+            Este campo es requerido
+          </ng-container>
+          <ng-container *ngIf="nombreApellidoControl.errors?.['minlength']">
+            La Longitud tiene que ser mayor a 3
+          </ng-container>
+        </div>
+      </div>
     </div>
-  </div>
-  <button class="btn btn-primary" type="submit" >Enviar</button>
-</form>
+  
+  
+    <div class="mb-3 row">
+      <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+  
+        <input formControlName="email" type="text" class="form-control" value="email@example.com"
+          [ngClass]="{'is-invalid':emailControIsInvalid }">
+        <div class="invalid-feedback">
+          <ng-container *ngIf="emailControl.errors?.['required']">
+            Este campo es requerido
+          </ng-container>
+          <ng-container *ngIf="emailControl.errors?.['email']">
+            Debe ingresar un email valido
+          </ng-container>
+        </div>
+  
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+  
+        <input formControlName="password" type="password" class="form-control" id="inputPassword">
+  
+      </div>
+    </div>
+    <button class="btn btn-primary w-75" type="submit">Enviar</button>
+  </form>
+</div>
